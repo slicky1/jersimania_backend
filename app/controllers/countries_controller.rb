@@ -22,6 +22,12 @@ class CountriesController < ApplicationController
        render json: country
     end
 
+    def destroy
+        country = find_country
+        country.destroy
+       head :no_content
+    end
+
 
 
     private
