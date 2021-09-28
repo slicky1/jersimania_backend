@@ -4,4 +4,28 @@ class CountriesController < ApplicationController
         render json: countries, only: [:name, :img_source]
         # render json: countries
       end
+
+      def create
+        countries = Country.create(country_params)
+        render json: countries, status: :created
+    
+    end
+    def show
+        country = find_country
+        # render json: country, only: [:name, :img_url]
+        render json: country
+    end
+
+
+
+    private
+
+    def country_params
+        params.require(:country).permit(:name, :img_url)
+    end
+
+    def find_country
+        Country.find(params[:id])
+    end
 end
+
