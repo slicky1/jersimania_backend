@@ -16,6 +16,12 @@ class CountriesController < ApplicationController
         render json: country
     end
 
+    def update
+        country = find_country
+        country.update(country_params)
+       render json: country
+    end
+
 
 
     private
