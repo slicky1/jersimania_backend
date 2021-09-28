@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_28_064718) do
+ActiveRecord::Schema.define(version: 2021_09_28_065429) do
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 2021_09_28_064718) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "jerseys", force: :cascade do |t|
+    t.string "name"
+    t.string "img_source"
+    t.string "description"
+    t.integer "country_id", null: false
+    t.integer "brand_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["brand_id"], name: "index_jerseys_on_brand_id"
+    t.index ["country_id"], name: "index_jerseys_on_country_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.string "img_source"
@@ -34,5 +46,7 @@ ActiveRecord::Schema.define(version: 2021_09_28_064718) do
     t.index ["country_id"], name: "index_teams_on_country_id"
   end
 
+  add_foreign_key "jerseys", "brands"
+  add_foreign_key "jerseys", "countries"
   add_foreign_key "teams", "countries"
 end
