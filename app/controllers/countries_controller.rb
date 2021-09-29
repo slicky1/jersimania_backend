@@ -1,8 +1,10 @@
 class CountriesController < ApplicationController
+rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+
     def index
         countries = Country.all
-        render json: countries, only: [:name, :img_source]
-        # render json: countries
+        # render json: countries, only: [:name, :img_source]
+        render json: countries
       end
 
       def create
@@ -14,6 +16,7 @@ class CountriesController < ApplicationController
         country = find_country
         # render json: country, only: [:name, :img_url]
         render json: country
+    
     end
 
     def update
@@ -38,6 +41,10 @@ class CountriesController < ApplicationController
 
     def find_country
         Country.find(params[:id])
+    end
+
+    def render_not_found
+        render json: { error: "country not found" }, status: :not_found
     end
 end
 
