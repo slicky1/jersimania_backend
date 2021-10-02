@@ -7,6 +7,13 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
         render json: countries
       end
 
+    # def index
+    #     team = Team.find(params[:team_id])
+    #     countries = team.countries
+    #     # render json: teams, only: [:name, :img_source]
+    #     render json: countries
+    #   end
+
       def create
         countries = Country.create(country_params)
         render json: countries, status: :created
