@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :jerseys
   resources :brands
   # resources :teams
-  # resources :countries
+  #  resources :countries
   resources :countries do
     resources :teams
   end
