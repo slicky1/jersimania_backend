@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_09_28_072344) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "brands", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -29,8 +32,8 @@ ActiveRecord::Schema.define(version: 2021_09_28_072344) do
     t.string "name"
     t.string "img_source"
     t.string "description"
-    t.integer "team_id", null: false
-    t.integer "brand_id", null: false
+    t.bigint "team_id", null: false
+    t.bigint "brand_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["brand_id"], name: "index_jerseys_on_brand_id"
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(version: 2021_09_28_072344) do
     t.string "title"
     t.string "description"
     t.integer "rating"
-    t.integer "user_id", null: false
-    t.integer "jersey_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "jersey_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["jersey_id"], name: "index_reviews_on_jersey_id"
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_09_28_072344) do
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.string "img_source"
-    t.integer "country_id", null: false
+    t.bigint "country_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["country_id"], name: "index_teams_on_country_id"
